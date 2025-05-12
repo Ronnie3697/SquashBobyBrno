@@ -44,40 +44,17 @@
     .hidden {
       display: none;
     }
-    #add-row-container {
-      margin-top: 2rem;
-    }
-    input {
-      margin: 0.25rem;
-      padding: 0.4rem;
-    }
-    button {
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-    }
   </style>
 </head>
 <body>
   <h1>Squash Boby</h1>
 
   <button id="toggle-button">Zobrazit uplynulé</button>
-  <button id="show-form-button">Chci přidat nový řádek</button>
-
-  <div id="add-row-container" style="display: none;">
-    <form id="add-form">
-      <input type="date" id="date" required>
-      <input type="text" id="time" placeholder="Čas Od - Do" required>
-      <input type="text" id="courtA" placeholder="Kurt A" required>
-      <input type="text" id="courtB" placeholder="Kurt B" required>
-      <button type="submit">Přidat řádek</button>
-    </form>
-  </div>
 
   <table>
     <thead>
       <tr>
-	<th>Den</th>
+        <th>Den</th>
         <th>Datum</th>
         <th>Čas Od - Do</th>
         <th>Kurt A</th>
@@ -85,7 +62,7 @@
       </tr>
     </thead>
     <tbody id="table-body">
-	    <tr>
+      <tr>
           <td>Středa</td>
           <td>7.5.2025</td>
           <td>15:30 - 16:30</td>
@@ -157,7 +134,7 @@
 
       const rows = Array.from(tableBody.querySelectorAll("tr"));
       rows.forEach(row => {
-        const dateText = row.cells[1].textContent.trim();
+        const dateText = row.cells[1].textContent.trim();  // Změněno na index 1 pro "Datum"
         const rowDate = parseDate(dateText);
 
         if (rowDate && rowDate < today) {
@@ -173,62 +150,6 @@
         showingOld = !showingOld;
         oldRows.forEach(row => row.classList.toggle("hidden", !showingOld));
         toggleButton.textContent = showingOld ? "Skrýt uplynulé" : "Zobrazit uplynulé";
-      });
-
-      const showFormButton = document.getElementById("show-form-button");
-      const addRowContainer = document.getElementById("add-row-container");
-
-      showFormButton.addEventListener("click", () => {
-        addRowContainer.style.display = "block";
-        showFormButton.style.display = "none";
-      });
-
-      const form = document.getElementById("add-form");
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const dateInput = document.getElementById("date");
-        const timeInput = document.getElementById("time");
-        const courtAInput = document.getElementById("courtA");
-        const courtBInput = document.getElementById("courtB");
-
-        const date = dateInput.value.trim();
-        const time = timeInput.value.trim();
-        const courtA = courtAInput.value.trim();
-        const courtB = courtBInput.value.trim();
-
-        if (!date || !time || !courtA || !courtB) {
-          alert("Vyplň prosím všechna pole.");
-          return;
-        }
-
-        const rowDate = parseDate(date);
-        if (!rowDate) {
-          alert("Neplatné datum.");
-          return;
-        }
-
-        const formattedDate = rowDate.toLocaleDateString("cs-CZ");
-
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${formattedDate}</td>
-          <td>${time}</td>
-          <td>${courtA}</td>
-          <td>${courtB}</td>
-        `;
-
-        if (rowDate < today) {
-          row.classList.add("hidden");
-          oldRows.push(row);
-        }
-
-        tableBody.appendChild(row);
-        form.reset();
-
-        // Skryj formulář a zobraz zpět tlačítko
-        addRowContainer.style.display = "none";
-        showFormButton.style.display = "inline-block";
       });
     });
   </script>
