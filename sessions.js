@@ -291,7 +291,7 @@ const squashSessions = [
     date: '12.3.2026',
     time: '17:00 - 18:00',
     courtA: 2,
-    courtB: 3,
+    courtB: 'Rekonstrukce',
   },
   {
     day: 'Úterý',
