@@ -342,4 +342,25 @@ const squashSessions = [
     courtA: 1,
     courtB: 3,
   },
+  {
+    day: 'Čtvrtek',
+    date: '7.5.2026',
+    time: '16:30 - 17:30',
+    courtA: 2,
+    courtB: 3,
+  },
+  {
+    day: 'Čtvrtek',
+    date: '14.5.2026',
+    time: '17:00 - 18:00',
+    courtA: 3,
+    courtB: 4,
+  },
+  {
+    day: 'Čtvrtek',
+    date: '21.5.2026',
+    time: '17:00 - 18:00',
+    courtA: 2,
+    courtB: 3,
+  },
 ];
