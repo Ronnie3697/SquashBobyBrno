@@ -399,8 +399,8 @@ const squashSessions = [
     courtB: 'X',
   },
   {
-    day: 'Úterý',
-    date: '7.7.2026',
+    day: 'Středa',
+    date: '8.7.2026',
     time: '17:00 - 18:00',
     courtA: 'X',
     courtB: 5,
